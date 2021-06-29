@@ -235,6 +235,7 @@ def like_action_campsite(site_id, action):
     if not g.user:
         flash("You need to be logged in to do that!", "danger")
         return {'success': False}
+        return redirect('/')
 
     site = RecreationGovSite.query.filter_by(id = site_id).first_or_404()
     liked_site = LikedSite.query.filter_by(rec_gov_id = site_id).first()
