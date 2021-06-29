@@ -8,7 +8,8 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = "it's a secret"
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
 
 class ProductionConfig(Config):
     DEBUG = False

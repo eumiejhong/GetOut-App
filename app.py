@@ -10,14 +10,10 @@ from api import get_campsites, get_rec_parks, DEFAULT_LATITUDE, DEFAULT_LONGITUD
 from forms import SignUpForm, LoginForm, UserEditForm, StoryForm
 import json
 
-
-
 app = Flask(__name__)
 migrate = Migrate(app, db)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///get_outs'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
+env_config = os.getenv("APP_SETTINGS", "config.DevelopmentConfig")
+app.config.from_object(env_config)
 
 debug = DebugToolbarExtension(app)
 migrate = Migrate(app, db)
