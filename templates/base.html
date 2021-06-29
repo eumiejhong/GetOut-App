@@ -17,6 +17,12 @@
       href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="/static/stylesheets/style.css">
     <link rel="shortcut icon" href="/static/favicon.ico">
+
+    {% if pageData %}
+      <script>
+        window.pageData = {{ pageData|safe }};
+      </script>
+    {% endif %}
 </head>
 <body class="{% block body_class %}{% endblock %}"> 
 
@@ -42,7 +48,7 @@
                 <a class="nav-link" href="/logout">Logout</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/user/{{g.user.id}}">Welcome {{ g.user.username }}</a>
+                <a class="nav-link" id="user-id" data-id="{{ g.user.id }}" href="/user/{{g.user.id}}">Welcome {{ g.user.username }}</a>
               </li>
               {% endif %}
           </ul>

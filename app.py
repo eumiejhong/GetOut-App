@@ -177,6 +177,7 @@ def show_all_places():
         "params": request.args
     }
     pageData = {
+        "userID": g.user.id if g.user else None,
         "campsites": [c.to_json(g.user) for c in campsites],
         "rec_parks": [c.to_json(g.user) for c in rec_parks],
         "params": {

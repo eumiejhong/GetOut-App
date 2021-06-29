@@ -61,7 +61,9 @@ $(function(){
     if (response.data) {
       renderMarkers(response.data);
     }
+
   }
+
   
   // Runs on page load
   initMap(window.pageData);

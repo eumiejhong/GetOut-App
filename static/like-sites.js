@@ -23,12 +23,12 @@ $(function(){
         //console.log(ID)
         const $heartIcon = $(el).find('.fa-heart');
 
-        if (!ID) {
+        const userID = window.pageData.userID;
+
+        if (!ID || !userID) {
             return;
         }
 
-
-        
         await axios.post(`/site/${action}/${ID}`);
         //console.log(response)
         
