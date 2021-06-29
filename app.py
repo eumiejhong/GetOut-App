@@ -200,10 +200,11 @@ def show_all_places_json():
     site_lists = [campsites, rec_parks]
     for site_list in site_lists:
         for site in site_list:
-            existing_model = RecreationGovSite.query.filter_by(rec_gov_id=site.id).first_or_404()
+            existing_model = RecreationGovSite.query.filter_by(id=site.id).first()
             if not existing_model:
                 db.session.add(RecreationGovSite(
                     id = site.id,
+                    rec_gov_id = site.rec_gov_id,
                     name = site.name,
                     directions = site.directions,
                     city = site.city,
