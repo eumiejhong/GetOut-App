@@ -1,6 +1,4 @@
 alembic==1.6.5
-astroid==2.4.2
-astropy==4.2.1
 bcrypt==3.2.0
 blinker==1.4
 cerridwen==1.4.1
@@ -30,9 +28,6 @@ lazy-object-proxy==1.4.3
 Mako==1.1.4
 MarkupSafe==2.0.1
 mccabe==0.6.1
-numpy==1.20.1
-pandas==1.2.4
-Pillow==8.1.0
 psycopg2-binary==2.8.6
 pycparser==2.20
 pyerfa==2.0.0
