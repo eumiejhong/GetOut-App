@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h3>{{ story.title }}</h3>
+    <h6 id="story-user" data-id="{{ story.user_id }}" data-time="{{ story.timestamp }}">posted by: {{ story.user.username }} on {{ story.timestamp.strftime('%d %B %Y') }}</h6>
+<p>{{ story.content }}</p>
+
+<br>
+<h4>Comments</h4>
+<br>
+
+
+<form data-type="{{ story.type }}" data-id="{{ story.id }}" id="comment-form" method="POST">
+    <div>
+        <textarea type="text" class="input" id="comment-body" name="comment-body" placeholder="Write comment here!"></textarea>
+    </div>
+    <button class="btn btn-sm btn-primary">Add Comment</button>
+</form>
+</div>
+
+<br>
+<div class="container">
+    <div id="comment-area"></div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="/static/user-comments.js"></script>
+
+{% endblock %}

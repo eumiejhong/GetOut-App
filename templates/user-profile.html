@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <img src="{{ user.image_url }}" alt="Image for {{ user.username }}" id="profile-avatar">
+    <div class="row full-width">
+        <h3>{{ user.username }}</h3>
+        <h5>Bio</h5>
+            <p>{{ user.bio }}</p>
+            <br>
+            <a href="/user/{{ user.id }}/edit" class="btn btn-sm btn-success" style="width:100px;height:30px;">Edit Profile</a>
+            <br>
+            <a href="/user/delete" class="btn btn-sm btn-danger" style="width:100px;height:30px;">Delete User</a>
+    </div>
+    <br>
+    <div class="rec-stories-area">
+        <h3>Rec Park Stories</h3>
+        <div class="card-group">
+            {% for story in stories %}
+                {% if story.type == 'rec_park' %}
+            <div class="card" style="max-width:20rem;" id="stories-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ story.title }}</h5>
+                    <br>
+                    <span class="text-muted">{{ story.timestamp.strftime('%d %B %Y') }}</span>
+                    <p class="card-text">{{ story.content }}</p>
+                    <a href="/site/{{ story.id }}/show-story" class="btn btn-sm btn-primary">Read more</a>
+                </div>
+            </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+    <div class="camp-stories-area">
+        <h3>Campsite Stories</h3>
+        <div class="card-deck">
+            {% for story in stories %}
+                {% if story.type == 'campsite' %}
+            <div class="card" style="max-width:20rem;" id="stories-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ story.title }}</h5>
+                    <br>
+                    <span class="text-muted">{{ story.timestamp.strftime('%d %B %Y') }}</span>
+                    <p class="card-text">{{ story.content }}</p>
+                    <a href="/site/{{ story.id }}/show-story" class="btn btn-sm btn-primary">Read more</a>
+
+                </div>
+            </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

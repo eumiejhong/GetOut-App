@@ -1,0 +1,55 @@
+.card-text {
+    color: black;
+    white-space: nowrap;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.img-thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    height: 300px;
+    width: 400px;
+}
+
+.navbar {
+    padding: 0.5em 100px !important;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .navbar {
+      padding: 0.5em 1em !important;
+    }
+  }
+
+#profile-avatar {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    height: 150px;
+    width: 150px;
+}
+
+.fa-heart {
+  margin: 10px 30px 0px 1px
+}
+
+#mapid { 
+  height: 600px; 
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+#stories-button {
+  color: white !important;
+}
+
+#stories-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  height: 200px;
+  width: 100px;
+}

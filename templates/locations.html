@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <script>
+        window.pageData = {{ pageData|safe }};
+    </script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container text-center">
+
+    <h4>Find your location here</h4>
+    <button id="coord-btn" class="btn btn-success btn-sm btn-block">Find me!</button>
+      <p id="coords"></p>
+      <form id="radius-form" action="/get-out">
+        <input type="hidden" id="lat-camp" name="lat" value="{{params.lat}}"/>
+        <input type="hidden" id="long-camp" name="long" value="{{params.long}}"/>
+        <p>Select Radius (in miles): 
+          <input id="radius" name="radius" value="{{params.radius}}"></p>
+        <button id="radius-btn" class="btn btn-primary btn-sm btn-block">Let's Go!</button>
+      </form>
+</div>
+
+<br>
+
+<div id="mapid"></div> 
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="/static/get-user-coords.js"></script>
+    <script src="/static/like-sites.js"></script>
+    <script src="/static/maps.js"></script>
+{% endblock %}

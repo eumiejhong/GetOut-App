@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ site.name }}</h1>
+    <p>{{ site.directions }}</p>
+    <br>
+
+    <a href="/site/{{ site.id }}/add-story" class="btn btn-sm btn-primary" id="add-story-btn">Add Story</a>
+
+    <br>
+    <br>
+    <br>
+    <div class="card-deck">
+        <h5>Explore Stories</h5>
+        {% for story in stories %}
+        <div class="card" id="stories-card" style="width:20rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ story.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">posted by: {{ story.user_id }} on: {{ story.timestamp }}</h6>
+                <p class="card-text">{{ story.content }}</p>
+                <a href="/site/{{ story.id }}/show-story"></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
