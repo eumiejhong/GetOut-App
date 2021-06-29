@@ -198,20 +198,21 @@ def show_all_places_json():
     rec_parks = get_rec_parks(latitude=user_latitude, longitude=user_longitude, limit=50, radius=radius)
     
     site_lists = [campsites, rec_parks]
-    for site in site_lists:
-        existing_model = RecreationGovSite.query.filter_by(id=site.id).first()
-        if not existing_model:
-            db.session.add(RecreationGovSite(
-                id = site.id,
-                name = site.name,
-                directions = site.directions,
-                city = site.city,
-                state = site.state,
-                latitude = site.latitude,
-                longitude = site.longitude,
-                image_url = site.image_url,
-                type = site.type
-            ))
+    for site_list in site_lists:
+        for site in site_list:
+            existing_model = RecreationGovSite.query.filter_by(rec_gov_id=site.id).first_or_404()
+            if not existing_model:
+                db.session.add(RecreationGovSite(
+                    id = site.id,
+                    name = site.name,
+                    directions = site.directions,
+                    city = site.city,
+                    state = site.state,
+                    latitude = site.latitude,
+                    longitude = site.longitude,
+                    image_url = site.image_url,
+                    type = site.type
+                ))
 
     db.session.commit()
 
