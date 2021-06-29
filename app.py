@@ -231,7 +231,7 @@ def show_all_places_json():
 #*******************************************************************************************************
 
 @app.route('/site/<action>/<site_id>', methods=['POST'])
-def like_action_campsite(site_id, action):
+def like_action_site(site_id, action):
     if not g.user:
         flash("You need to be logged in to do that!", "danger")
         return {'success': False}
@@ -240,7 +240,7 @@ def like_action_campsite(site_id, action):
     site = RecreationGovSite.query.filter_by(id = site_id).first_or_404()
     liked_site = LikedSite.query.filter_by(rec_gov_id = site_id).first()
 
-    if not liked_site:
+    if not liked_site and g.user:
         if action == 'like':
             liked_site = LikedSite(rec_gov_id = site.id, user_id = g.user.id, name = site.name, type=site.type)
             db.session.add(liked_site)
