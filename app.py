@@ -101,7 +101,8 @@ def user_profile(user_id):
     """Shows user profile"""
     user = User.query.get_or_404(user_id)
     stories = (Story.query.filter(Story.user_id == user_id).order_by(Story.timestamp.desc()).limit(50).all())
-    return render_template('user-profile.html', user=user, stories=stories)
+    liked_sites = LikedSite.query.filter_by(user_id = user_id).all()
+    return render_template('user-profile.html', user=user, stories=stories, liked_sites=liked_sites)
 
 @app.route('/user/<int:user_id>/edit', methods=['GET', 'POST'])
 def edit_profile(user_id):
@@ -270,22 +271,17 @@ def add_story(site_id):
         return redirect('/')
     form = StoryForm()
     site = RecreationGovSite.query.filter_by(id = site_id).first()
-    liked_site = LikedSite.query.filter_by(rec_gov_id = site_id).first_or_404()
-
-    if 'rec_park' in site.id: 
-        site.type = 'rec_park'
-    else:
-        site.type = 'campsite'
-
-    if form.validate_on_submit():
+    liked_site = LikedSite.query.filter_by(rec_gov_id=site_id).first()
+  
+    if form.validate_on_submit():            
         story = Story(
-            title = form.title.data,
-            content = form.content.data,
-            rec_gov_id = site.id,
-            user_id = g.user.id,
-            liked_site_id = liked_site.id,
-            type = site.type
-        )
+                title = form.title.data,
+                content = form.content.data,
+                rec_gov_id = site.id,
+                user_id = g.user.id,
+                liked_site_id = (liked_site.id if liked_site else None),
+                type = site.type
+            )
         db.session.add(story)
         db.session.commit()
 

@@ -28,21 +28,21 @@ class User(db.Model):
 
 #User like site **************************************************************************************************
 
-    def like_site(self, gov_site):
-        if not self.has_liked_site(gov_site):
-            like = LikedSite(user_id=self.id, rec_gov_id=gov_site.id, name=gov_site.name)
+    def like_site(self, site):
+        if not self.has_liked_site(site):
+            like = LikedSite(user_id=self.id, rec_gov_id=site.id, name=site.name)
             db.session.add(like)
 
-    def unlike_site(self, gov_site):
-        if self.has_liked_site(gov_site):
+    def unlike_site(self, site):
+        if self.has_liked_site(site):
             LikedSite.query.filter_by(
                 user_id=self.id,
-                rec_gov_id = gov_site.id).delete()
+                rec_gov_id = site.id).delete()
 
-    def has_liked_site(self, gov_site):
+    def has_liked_site(self, site):
         return LikedSite.query.filter(
             LikedSite.user_id == self.id,
-            LikedSite.rec_gov_id == gov_site.id).first()
+            LikedSite.rec_gov_id == site.id).first()
 
 #User sign up/authenticate **************************************************************************************
 

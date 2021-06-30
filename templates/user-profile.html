@@ -14,6 +14,27 @@
             <a href="/user/delete" class="btn btn-sm btn-danger" style="width:100px;height:30px;">Delete User</a>
     </div>
     <br>
+
+    <div class="liked-campsites">
+        <h5>Liked Campsites</h5>
+        {% for site in liked_sites %}
+            {% if site.type == 'campsite' %}
+                <a href="/site/{{ site.rec_gov_id }}/site-stories">{{ site.name }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <br>
+
+    <div class="liked-rec-parks">
+        <h5>Liked Rec Parks</h5>
+        {% for site in liked_sites %}
+            {% if site.type == 'rec_park' %}
+                <p></p><a href="/site/{{ site.rec_gov_id }}/site-stories">{{ site.name }}</a></p>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <br>
     <div class="rec-stories-area">
         <h3>Rec Park Stories</h3>
         <div class="card-group">
